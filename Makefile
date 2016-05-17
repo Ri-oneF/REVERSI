@@ -20,4 +20,4 @@ isFinish.o:isFinish.c
 getWinner.o:getWinner.c
 	gcc -c getWinner.c
 clean:
-	rm -f main.o getWinner.o init.o view_board.o changePlayer.o numAbleBox.o judgeBox.o
+	rm -f main.o getWinner.o init.o view_board.o changePlayer.o numAbleBox.o judgeBox.o returnBox.o isFinish.o 
