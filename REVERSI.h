@@ -1,3 +1,6 @@
+#ifndef REVERSI_H
+#define REVERSI_H
+
 #include <stdio.h>
 
 #define HEIGHT	8	// ゲームボードの縦のマスの数
@@ -28,3 +31,5 @@ void changePlayer();
 int isFinish();
 
 int getWinner();
+
+#endif
