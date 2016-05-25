@@ -56,13 +56,23 @@ int judge_line(int dirc,int a,int b)
 	}
 
 	/* 相手の色が隣り合う限りずらして行く */
-	for (yoko=b+yc,tate=a+tc;;yoko+=yc,tate+=tc)
-	{
-		if(board[tate][yoko] == enemy){
-			flag=1; /* 最低でも一個は相手の色と隣り合うことをここで記憶しておく */
-			continue;
+	for (yoko=b+yc,tate=a+tc; ; yoko+=yc,tate+=tc){
+
+		/* ゲームボード範囲内の走査 */
+		if ((0<=tate&&tate<HEIGHT && 0<=yoko&&yoko<WIDTH)){
+
+			if(board[tate][yoko] == enemy){
+				flag=1; /* 最低でも一個は相手の色と隣り合うことをここで記憶しておく */
+				continue;
+			} else {
+				break;
+			}
+
+		/* ゲームボードの範囲を超えて走査しようとすると、もう挟めることもないので、諦める */
 		} else {
-			break;
+
+			return 0;
+
 		}
 	}
 
