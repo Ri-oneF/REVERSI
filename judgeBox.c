@@ -17,13 +17,6 @@ int judge_line(int dirc, int a, int b);
 int judgeBox(int a, int b)
 {
 
-	if(board[a][b] != MARK){
-		printf("\aその場所には既に石が置かれています\n");
-		return 0;
-	}
-	/* とりあえずその場が何も置かれてない状態であることを確認 */
-
-
 	int dirc;
 
 	for(dirc=0;dirc<8;dirc++){ /* 8方向について一つづつ調べるというループ */

@@ -18,7 +18,7 @@ void init()
 	board[HEIGHT/2  ][WIDTH/2-1] = BLACK;
 	board[HEIGHT/2-1][WIDTH/2  ] = BLACK;
 
-	/*Hiroki
+	/*
 	オセロ協会的には石の初期位置は白が左上で、黒が先行だそうです
 	*/
 

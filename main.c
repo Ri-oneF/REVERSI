@@ -3,7 +3,7 @@
 // main関数の中でグローバル変数を書き換えないように
 //	 ->	ルールというわけではないけれど、Ri-oneでプログラム書く練習だと思ってやってみてください
 
-void div_line();
+void draw_div_line();
 
 int main()
 {
@@ -21,7 +21,7 @@ int main()
 	*/
 
 	// ゲームボードを表示
-	view_board();
+	//view_board(); /* 必要ないかも… */
 
 	// 入力を受け取る変数
 	int iHeight, iWidth;
@@ -30,10 +30,11 @@ int main()
 	while(1)
 	{
 		// playerが置ける場所があるか調べる。なかったらスキップ
-
-		/* ●●●●まだ中身がないものは、コメントアウトしておきます●●●●
+		/*
 		if (numAbleBox(player) == 0)
 		{
+			(player) ? printf("\n 黒 ") : printf("\n 白 ");
+			printf("のターンです,\nが,置ける場所がありません！\n");
 			continue;
 		}
 		*/
@@ -44,30 +45,48 @@ int main()
 
 		while(1){
 
+			/* ゲームボードの表示 */
+			view_board();
+
 			/* 誘導 */
-			(player) ? printf("\n 黒 ") : printf("\n 白 ");
+			(player) ? printf(" 黒 ") : printf(" 白 ");
 			printf("のターンです.\nどこに石を置きますか？\n(横, 縦) : ");
 
 			/* 入力 */
 			scanf("%d,%d",&iHeight, &iWidth);
-			iHeight--; iWidth--; /* 配列が0から始まるので…… */
-			div_line();
 
-			/* 範囲外時再入力 */
+			/* 配列が0から始まるので…… */
+			iHeight--; iWidth--;
+
+			/* インターフェースのために。 */
+			puts(""); draw_div_line();
+
+
+			/* ----分岐---- */
 			if( !((0<=iHeight&&iHeight<HEIGHT) && (0<=iWidth&&iWidth<WIDTH)) ){
-				printf("\a範囲外の値が入力されました。\n\n");
-				view_board();
-				continue;
-			}
 
-			/* その場所に石が置けるか判定、置けなければエラーメッセージを表示し再入力 */
-			if( judgeBox(iHeight,iWidth) >= 1 ){
-				printf("置けます！\n\n");
-				break;
-			} else {
-				printf("\aその場所に石は置けないようです...\n\n");
-				view_board();
+				/* ゲームボード範囲外時、再入力 */
+				printf("\a範囲外の値が入力されました。\n\n");
 				continue;
+
+			} else if( board[iHeight][iWidth] != MARK ){
+
+				/* そのマスに既に石が置かれていたら、再入力 */
+				printf("\aその場所には既に石が置かれています\n\n");
+				continue;
+
+			} else if( judgeBox(iHeight,iWidth) >= 1 ){
+
+				/* XXXXその場所に石が置けるか判定XXXX */
+				printf("置けました！\n\n");
+				break;
+
+			} else {
+
+				/* 置けない */
+				printf("\aその場所に石は置けないようです...\n\n");
+				continue;
+
 			}
 
 		}
@@ -77,7 +96,7 @@ int main()
 		//returnBox(iWidth, iHeight);
 
 		// ゲームボードを表示
-		view_board();
+		//view_board(); /* 必要ないかも */
 
 		// プレイヤーを相手に交代
 		//changePlayer();
@@ -108,9 +127,8 @@ int main()
 	return 0;
 }
 
-void div_line(){
+void draw_div_line(){
 	int i;
-	puts("");
 	for(i=0; i<WIDTH; i++) printf("====");
 	printf("\n\n");
 }
