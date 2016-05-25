@@ -18,7 +18,7 @@ int judgeBox(int a, int b)
 {
 
 	if(board[a][b] != MARK){
-		printf("\n\n\aその場所には既に石が置かれています\n\n");
+		printf("\aその場所には既に石が置かれています\n");
 		return 0;
 	}
 	/* とりあえずその場が何も置かれてない状態であることを確認 */
@@ -63,9 +63,9 @@ int judge_line(int dirc,int a,int b)
 	}
 
 	/* 相手の色が隣り合う限りずらして行く */
-	for (yoko=a+yc,tate=b+tc;;yoko+=yc,tate+=tc)
+	for (yoko=b+yc,tate=a+tc;;yoko+=yc,tate+=tc)
 	{
-		if(board[yoko][tate] == enemy){
+		if(board[tate][yoko] == enemy){
 			flag=1; /* 最低でも一個は相手の色と隣り合うことをここで記憶しておく */
 			continue;
 		} else {
@@ -74,7 +74,7 @@ int judge_line(int dirc,int a,int b)
 	}
 
 	/* 自分の色ではさめてるかな？ */
-	if(board[yoko][tate] == player && flag==1){
+	if(board[tate][yoko] == player && flag==1){
 		return 1; /* 無事に挟まれていました */
 	} else {
 		return 0; /* 挟まれてないやん */
