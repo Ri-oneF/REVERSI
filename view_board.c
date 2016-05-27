@@ -1,6 +1,6 @@
 #include "REVERSI.h"
 
-void draw_line();
+void draw_board_line();
 void draw_stones(int i);
 
 void view_board()
@@ -23,18 +23,18 @@ void view_board()
 	/* ----盤面を走査---- */
 	for(i=0; i<HEIGHT; i++) { /* 行（たて）のループ */
 
-		draw_line(); /* 区切り線+--+の表示 */
+		draw_board_line(); /* 区切り線+--+の表示 */
 
 		printf("%2d", i+1); /* 行番号（たて）の表示（最大2桁） */
 		draw_stones(i); /* i行目について、石や空白を表示 */
 
-	} draw_line(); /* 最後の区切り線+--+ */
+	} draw_board_line(); /* 最後の区切り線+--+ */
 
 	puts("");
 
 }
 
-void draw_line(){
+void draw_board_line(){
 
 	/* 区切り線を表示（よこ） */
 
