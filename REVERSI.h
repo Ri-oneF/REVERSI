@@ -20,7 +20,7 @@ void init();
 
 void view_board();
 
-int numAbleBox(int man);
+int numAbleBox(int man, int returnAble[][2]);
 
 int judgeBox(int a, int b);
 

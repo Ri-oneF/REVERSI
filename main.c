@@ -21,53 +21,53 @@ int main()
 	putchar('\n');
 	update_screen("  F-team REVERSI\n\n");
 
-	// 入力を受け取る変数
-	int iHeight, iWidth;
+	int returnAble[HEIGHT*WIDTH][2];
+	int returnAbleNum;
+	int num;
 
 	// ゲームはいつ終わるかわからないので無限ループにした方がいいと思う
 	while(1){
 
-		/* --------プレイヤーが置ける場所があるか確認、なければスキップ-------- */
-		/*
-		if (numAbleBox(player) == 0)
+		/* プレイヤーひっくり返すことのできる座標の数を調べる */
+		returnAbleNum = numAbleBox(player, returnAble);
+
+		/* ０ならスキップ */
+		if (returnAbleNum == 0)
 		{
-			(player) ? printf("\n 黒 ") : printf("\n 白 ");
+			switch(player){
+				case BLACK: printf(" 黒 "); break;
+				case WHITE: printf(" 白 "); break;
+			}
 			printf("のターンです... が、置ける場所がありません！\n");
+			changePlayer();
 			continue;
 		}
-		*/
 
-		/* --------プレイヤーがひっくり返せるまでループさせる-------- */
-		// とりあえず座標を入力する方法で進めておきます
+		/* 入力ループ */
 		while(1){
 
 			/* 誘導 */
-			(player) ? printf(" 黒 ") : printf(" 白 ");
-			printf("のターンです.\nどこに石を置きますか？\n(横, 縦) : ");
+			switch(player){
+				case BLACK: printf(" 黒 "); break;
+				case WHITE: printf(" 白 "); break;
+			}
+			printf("のターンです.\nどこに石を置きますか？: ");
 
 			/* 入力 */
-			scanf("%d,%d",&iHeight, &iWidth);
-			putchar('\n');
+			scanf("%d",&num);
 
-			/* 配列が0から始まるので */
-			iHeight--; iWidth--;
-
-			/* ----入力値の検証---- */
-			if( !((0<=iHeight&&iHeight<HEIGHT) && (0<=iWidth&&iWidth<WIDTH)) ){
-				update_screen("\a  範囲外の値が入力されました。\n\n");
-			} else if( board[iHeight][iWidth] != MARK ){
-				update_screen("\a  その場所には既に石が置かれています。\n\n");
-			} else if( judgeBox(iHeight,iWidth) >= 1 ){
-				/* ====入力された座標で相手の石を挟めるか判定==== */
-				break; /* 挟めるなら、ループを抜ける */
+			/* 入力値の検証 */
+			if(num <= 0 || returnAbleNum < num){
+				update_screen("正しい値を入力してください。\n\n");
 			} else {
-				update_screen("\a  その場所に石は置けないようです...\n\n");
+				break;
 			}
+
 
 		}
 
 		/* ｰｰｰｰｰｰｰｰ相手の石をひっくり返しメッセージを表示ｰｰｰｰｰｰｰｰ */
-		returnBox(iHeight, iWidth);
+		returnBox(returnAble[num-1][0], returnAble[num-1][1]);
 		update_screen("  置けました！\n\n");
 
 		/* --------プレイヤーを相手に交代-------- */
