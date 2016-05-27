@@ -42,7 +42,10 @@ int main()
 		while(1){
 
 			/* 誘導 */
-			(player) ? printf(" 黒 ") : printf(" 白 ");
+			switch(player){
+				case BLACK: printf(" 黒 "); break;
+				case WHITE: printf(" 白 "); break;
+			}
 			printf("のターンです.\nどこに石を置きますか？\n(横, 縦) : ");
 
 			/* 入力 */
@@ -71,7 +74,7 @@ int main()
 		update_screen("  置けました！\n\n");
 
 		/* --------プレイヤーを相手に交代-------- */
-		//changePlayer();
+		changePlayer();
 
 		/* --------ゲーム終了判定-------- */
 		/*

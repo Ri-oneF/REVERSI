@@ -38,7 +38,9 @@ int judge_line(int dirc,int a,int b)
 	int flag=0;
 	/* 最低でもひとつは相手の色と隣り合ってたよ！っていうフラグ */
 
-	int enemy = (player) ? WHITE : BLACK;
+	int enemy;
+	if(player == BLACK) enemy=WHITE;
+	else if(player == WHITE) enemy=BLACK;
 	/* 相手の色をenemy変数に記憶 */
 
 
