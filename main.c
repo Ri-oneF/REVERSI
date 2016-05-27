@@ -44,8 +44,6 @@ int main()
 			/* 誘導 */
 			(player) ? printf(" 黒 ") : printf(" 白 ");
 			printf("のターンです.\nどこに石を置きますか？\n(横, 縦) : ");
-
-			/* 入力 */
 			scanf("%d,%d",&iHeight, &iWidth);
 			putchar('\n');
 
