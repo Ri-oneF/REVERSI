@@ -1,7 +1,7 @@
 #include "REVERSI.h"
 
 void draw_board_line();
-void draw_stones(int i);
+void draw_stones(int i, int *count);
 
 void view_board()
 {
@@ -13,6 +13,9 @@ void view_board()
 
 	//カウンタ変数
 	int i, j;
+
+	//置ける場所を示す番号
+	int count = 1;
 
 	/* --------盤面の表示-------- */
 
@@ -26,7 +29,7 @@ void view_board()
 		draw_board_line(); /* 区切り線+--+の表示 */
 
 		printf("%2d", i+1); /* 行番号（たて）の表示（最大2桁） */
-		draw_stones(i); /* i行目について、石や空白を表示 */
+		draw_stones(i, &count); /* i行目について、石や空白を表示 */
 
 	} draw_board_line(); /* 最後の区切り線+--+ */
 
@@ -47,7 +50,7 @@ void draw_board_line(){
 	printf("---|\n");
 }
 
-void draw_stones(int i){
+void draw_stones(int i, int *count){
 
 	/* i行目に関して、石やら空白やらを印字 */
 
@@ -59,13 +62,18 @@ void draw_stones(int i){
 
 		switch(board[i][j]){ /* 対応の記号を印字 */
 			case MARK:
-				printf("   ");	//半角空白3つです
+				if(judgeBox(i,j)==1){
+					printf(" %d ", *count);
+					*count = *count + 1;
+				} else {
+					printf("   ");
+				}
 				break;
 			case BLACK:
-				printf(" B ");
+				printf(" ○ ");
 				break;
 			case WHITE:
-				printf(" W ");
+				printf(" ● ");
 				break;
 			default:
 				printf("\n\n\aerror: 二次元配列boardに不明な値が格納されています\n\n\n");
