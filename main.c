@@ -17,9 +17,33 @@ int main()
 	// ゲームボードの初期化
 	init();
 
+	/* test */
+	board[0][1] = WHITE;
+	board[0][2] = WHITE;
+	board[0][3] = WHITE;
+	board[0][4] = WHITE;
+	board[0][5] = WHITE;
+	board[0][6] = WHITE;
+	board[0][7] = BLACK;
+	board[1][0] = WHITE;
+	board[2][0] = WHITE;
+	board[3][0] = WHITE;
+	board[4][0] = WHITE;
+	board[5][0] = WHITE;
+	board[6][0] = WHITE;
+	board[7][0] = BLACK;
+	board[1][1] = WHITE;
+	board[2][2] = WHITE;
+	board[3][3] = WHITE;
+	board[4][4] = WHITE;
+	board[5][5] = WHITE;
+	board[6][6] = WHITE;
+	board[7][7] = BLACK;
+
+
 	// ゲームボードを表示
 	putchar('\n');
-	update_screen("  F-team REVERSI\n\n");
+//	update_screen("  F-team REVERSI\n\n");
 
 	int returnAble[HEIGHT*WIDTH][2];
 	int returnAbleNum;
@@ -54,11 +78,12 @@ int main()
 			printf("のターンです.\nどこに石を置きますか？: ");
 
 			/* 入力 */
-			scanf("%d",&num);
+			scanf("%d",&num); puts("");
 
 			/* 入力値の検証 */
 			if(num <= 0 || returnAbleNum < num){
-				update_screen("正しい値を入力してください。\n\n");
+				view_board();
+				msg_window("正しい値を入力してください。\n\n");
 			} else {
 				break;
 			}
@@ -67,11 +92,14 @@ int main()
 		}
 
 		/* ｰｰｰｰｰｰｰｰ相手の石をひっくり返しメッセージを表示ｰｰｰｰｰｰｰｰ */
+		printf("%d,%d\n",returnAble[num-1][0]+1, returnAble[num-1][1]+1);
 		returnBox(returnAble[num-1][0], returnAble[num-1][1]);
-		update_screen("  置けました！\n\n");
 
 		/* --------プレイヤーを相手に交代-------- */
-		//changePlayer();
+		changePlayer();
+
+		view_board();
+		msg_window("置けました！\n\n");
 
 		/* --------ゲーム終了判定-------- */
 		/*

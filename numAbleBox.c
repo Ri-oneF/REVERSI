@@ -15,7 +15,7 @@ int numAbleBox(int man, int returnAble[][2])
 
 	for(i=0; i<HEIGHT; i++){
 		for(j=0; j<WIDTH; j++){
-			if(judgeBox(i,j) >= 1){
+			if(judgeBox(i,j) >= 1 && board[i][j] == MARK){
 				returnAble[count][0] = i;
 				returnAble[count][1] = j;
 				count++;
