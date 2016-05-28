@@ -39,11 +39,13 @@ int main()
 	board[5][5] = WHITE;
 	board[6][6] = WHITE;
 	board[7][7] = BLACK;
+	
 
 
 	// ゲームボードを表示
 	putchar('\n');
-//	update_screen("  F-team REVERSI\n\n");
+	view_board();
+	msg_window("ゲーム開始.\n\n");
 
 	int returnAble[HEIGHT*WIDTH][2];
 	int returnAbleNum;
@@ -58,13 +60,17 @@ int main()
 		/* ０ならスキップ */
 		if (returnAbleNum == 0)
 		{
+			changePlayer(); /* プレイヤーの色を変えてから盤面表示していることに注意 */
+			view_board();
+			draw_line('-');
 			switch(player){
-				case BLACK: printf(" 黒 "); break;
-				case WHITE: printf(" 白 "); break;
+				case WHITE: printf(" 黒 "); break; /* 逆になってる */
+				case BLACK: printf(" 白 "); break;
 			}
-			printf("のターンです... が、置ける場所がありません！\n");
-			changePlayer();
+			printf("のターンです... が、置ける場所がありません！\n\n");
+			draw_line('-');
 			continue;
+		} else {
 		}
 
 		/* 入力ループ */
@@ -92,40 +98,38 @@ int main()
 		}
 
 		/* ｰｰｰｰｰｰｰｰ相手の石をひっくり返しメッセージを表示ｰｰｰｰｰｰｰｰ */
-		printf("%d,%d\n",returnAble[num-1][0]+1, returnAble[num-1][1]+1);
 		returnBox(returnAble[num-1][0], returnAble[num-1][1]);
 
 		/* --------プレイヤーを相手に交代-------- */
 		changePlayer();
-
 		view_board();
+
 		msg_window("置けました！\n\n");
 
 		/* --------ゲーム終了判定-------- */
-		/*
 		if (isFinish() == 1)
 		{
 			break; // 勝敗判定へ
 		}
-		*/
 
 
 	}
 
 	/* ========ここから勝敗判定======== */
+	msg_window("ゲームが終了しました\n\n");
 
 	// 黒と白それぞれのコマの数を数えて、多いほうが価値
 	if (getWinner() == BLACK)
 	{
-		// 黒の勝ち
+		msg_window("黒の勝ちです\n\n");
 	}
 	else if (getWinner() == WHITE)
 	{
-		// 白の勝ち
+		msg_window("白の勝ちです\n\n");
 	}
 	else
 	{
-		// 引き分け
+		msg_window("引き分けです\n\n");
 	}
 
 	return 0;

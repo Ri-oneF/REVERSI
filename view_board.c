@@ -62,8 +62,8 @@ void draw_stones(int i, int *count){
 
 		switch(board[i][j]){ /* 対応の記号を印字 */
 			case MARK:
-				if(judgeBox(i,j)==1){
-					printf(" %d ", *count);
+				if(judgeBox(i,j,player)==1){
+					printf("%2d ", *count);
 					*count = *count + 1;
 				} else {
 					printf("   ");

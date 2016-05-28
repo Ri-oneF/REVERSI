@@ -12,15 +12,15 @@
 	7:左下
 */
 
-int judge_line(int dirc, int a, int b);
+int judge_line(int dirc, int a, int b, int man);
 
-int judgeBox(int a, int b)
+int judgeBox(int a, int b, int man)
 {
 
 	int dirc;
 
 	for(dirc=0;dirc<8;dirc++){ /* 8方向について一つづつ調べるというループ */
-		if(judge_line(dirc,a,b) == 1) return 1;
+		if(judge_line(dirc,a,b,man) == 1) return 1;
 		/* 一度でも置けると判断すれば1を返す */
 	}
 
@@ -29,7 +29,7 @@ int judgeBox(int a, int b)
 
 }
 
-int judge_line(int dirc,int a,int b)
+int judge_line(int dirc,int a,int b,int man)
 {
 	int yoko, tate;
 	/* 縦、横のループカウンタ */
@@ -39,7 +39,7 @@ int judge_line(int dirc,int a,int b)
 	/* 最低でもひとつは相手の色と隣り合ってたよ！っていうフラグ */
 
 	int enemy;
-	switch(player){
+	switch(man){
 		case BLACK: enemy=WHITE; break;
 		case WHITE: enemy=BLACK; break;
 	}
@@ -81,7 +81,7 @@ int judge_line(int dirc,int a,int b)
 	}
 
 	/* 自分の色ではさめてるかな？ */
-	if(board[tate][yoko] == player && flag==1){
+	if(board[tate][yoko] == man && flag==1){
 		return 1; /* 無事に挟まれていました */
 	} else {
 		return 0; /* 挟まれてないやん */

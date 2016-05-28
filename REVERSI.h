@@ -22,7 +22,7 @@ void view_board();
 
 int numAbleBox(int man, int returnAble[][2]);
 
-int judgeBox(int a, int b);
+int judgeBox(int a, int b, int man);
 
 void returnBox(int a, int b);
 
