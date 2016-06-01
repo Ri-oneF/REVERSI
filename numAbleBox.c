@@ -10,5 +10,15 @@ int numAbleBox(int man)
 
 	// 作成したjudgeBox関数を使う
 
-	return 0;
+  int i,j,count=0;
+
+  for(i=0; i<8; i++){
+    for(j=0;j<8; j++){
+      if(judgeBox(i,j)==1)
+	count++;
+    }
+  }
+ 
+  return count;
+      
 }
