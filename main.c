@@ -8,16 +8,12 @@ void draw_line(char c);
 /* draw_line('-')で囲まれた文字列を表示します（メッセージウィンドウ的な使い方） */
 void msg_window(char c[]);
 
-/* draw_line()とview_board()とmessage()をひとまとめにしてゲームの、1ターンの画面とします */
-void update_screen(char c[]);
-
-
 int main()
 {
 	// ゲームボードの初期化
 	init();
 
-	/* test */
+	/* test */ /*
 	board[0][1] = WHITE;
 	board[0][2] = WHITE;
 	board[0][3] = WHITE;
@@ -39,7 +35,7 @@ int main()
 	board[5][5] = WHITE;
 	board[6][6] = WHITE;
 	board[7][7] = BLACK;
-	
+	*/
 
 
 	// ゲームボードを表示
@@ -148,10 +144,4 @@ void msg_window(char c[]){
 	draw_line('-');
 	while(c[i]) putchar(c[i++]);
 	draw_line('-');
-}
-
-void update_screen(char c[]){
-	draw_line('=');
-	view_board();
-	msg_window(c);
 }

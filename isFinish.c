@@ -10,7 +10,7 @@ int isFinish()
 	// 終了なら return 1;
 	// まだなら return 0;
 
-	int gomi[HEIGHT*WIDTH][2];
+	int gomi[HEIGHT*WIDTH][2]; /* ●ゴミ● */
 
 	if(numAbleBox(BLACK, gomi)==0 && numAbleBox(WHITE, gomi)==0){
 		return 1;

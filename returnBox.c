@@ -1,5 +1,6 @@
 #include "REVERSI.h"
 
+/* judgebox.cの関数と同じ内容… */
 int judge_line_2(int dirc, int a, int b);
 
 void returnBox(int a, int b)
