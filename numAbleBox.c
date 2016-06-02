@@ -14,7 +14,7 @@ int numAbleBox(int man)
 
   for(i=0; i<8; i++){
     for(j=0;j<8; j++){
-      if(judgeBox(i,j)==1)
+      if(judgeBox(i,j,man)==1)
 	count++;
     }
   }

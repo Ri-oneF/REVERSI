@@ -60,7 +60,7 @@ int main()
 				update_screen("\a  範囲外の値が入力されました。\n\n");
 			} else if( board[iHeight][iWidth] != MARK ){
 				update_screen("\a  その場所には既に石が置かれています。\n\n");
-			} else if( judgeBox(iHeight,iWidth) >= 1 ){
+			} else if( judgeBox(iHeight,iWidth, player) >= 1 ){
 				/* ====入力された座標で相手の石を挟めるか判定==== */
 				break; /* 挟めるなら、ループを抜ける */
 			} else {

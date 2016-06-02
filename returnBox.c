@@ -1,6 +1,6 @@
 #include "REVERSI.h"
 
-int judge_line(int dirc, int a, int b);
+int judge_line(int dirc, int a, int b, int man);
 
 
 void returnBox(int a, int b)
@@ -18,7 +18,7 @@ void returnBox(int a, int b)
     
     for(i = 0; i < 8; i++ )
     {
-        if(judge_line(i, a, b) == 1){
+      if(judge_line(i, a, b, player) == 1){
             for(tate = a + retu[i], yoko = b + gyou[i]; ; tate += retu[i], yoko += gyou[i])//周りを調べる！
                 if(board[tate][yoko] == player){//自分のがあったら抜ける
                     break;
