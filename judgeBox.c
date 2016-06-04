@@ -20,7 +20,7 @@ int judgeBox(int a, int b, int man)
 	int dirc;
 
 	for(dirc=0;dirc<8;dirc++){ /* 8方向について一つづつ調べるというループ */
-	    if(judge_line(dirc,a,b,man) == 1) return 1;
+		if(judge_line(dirc,a,b,man) == 1) return 1;
 		/* 一度でも置けると判断すれば1を返す */
 	}
 
@@ -48,8 +48,10 @@ int judge_line(int dirc,int a,int b,int man)
 	/* 最低でもひとつは相手の色と隣り合ってたよ！っていうフラグ */
 
 	int enemy;
-	if(man == BLACK) enemy=WHITE;
-	else if(man == WHITE) enemy=BLACK;
+	switch(man){
+		case BLACK: enemy=WHITE; break;
+		case WHITE: enemy=BLACK; break;
+	}
 	/* 相手の色をenemy変数に記憶 */
 
 
@@ -82,10 +84,3 @@ int judge_line(int dirc,int a,int b,int man)
 	}
 
 }
-
-
-
-
-
-
-

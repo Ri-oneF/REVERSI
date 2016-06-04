@@ -1,6 +1,6 @@
 #include "REVERSI.h"
 
-int numAbleBox(int man)
+int numAbleBox(int man, int returnAble[][2])
 {
 	// 引数 man が置ける場所の数を返す
 	// (重要) グローバル変数のplayerではなくて引数のmanを使うように！
@@ -10,15 +10,19 @@ int numAbleBox(int man)
 
 	// 作成したjudgeBox関数を使う
 
-  int i,j,count=0;
 
-  for(i=0; i<8; i++){
-    for(j=0;j<8; j++){
-      if(judgeBox(i,j,man)==1)
-	count++;
-    }
-  }
- 
-  return count;
-      
+	int i,j;
+	int count=0;
+
+	for(i=0; i<HEIGHT; i++){
+		for(j=0; j<WIDTH; j++){
+			if(judgeBox(i,j, man) >= 1 && board[i][j] == MARK){
+				returnAble[count][0] = i;
+				returnAble[count][1] = j;
+				count++;
+			}
+		}
+	}
+
+	return count;
 }
